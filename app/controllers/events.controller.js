@@ -7,8 +7,44 @@ exports.allEvents = (req, res) => {
   })
 };
 
+exports.singleEvent = (req, res) => {
+  Events.findOne({epoch: req.params.id}, function(err, result) {
+    if(err) {
+      console.log(err)
+    }
+    if(!result) {
+      res.status(400).send('No record found!');
+      return;
+    } else {
+      res.status(200).send(result);
+    }
+  });
+};
+
 exports.updateEvent = (req, res) => {
-  res.status(200).send('Updating Event');
+  const update = req.body;
+  Events.findOneAndUpdate({epoch: req.params.id}, req.body, function (err, result) {
+    if(err) {
+      console.log(err);
+    }
+    if(!result) {
+      res.status(400).send('No record found!');
+      return;
+    } else {
+      res.status(200).send('Record has been updated!')
+    }
+  });
+}
+
+exports.deleteOneEvent = (req, res) => {
+  Events.findOneAndDelete({epoch: req.params.id}, function(err, result) {
+    if(err) console.log(err);
+    if(!result) {
+      res.status(400).send('No record found!');
+      return;
+    }
+    res.status(200).send('Record has been deleted!')
+  })
 }
 
 exports.addEvents = (req, res) => {
@@ -23,6 +59,7 @@ exports.addEvents = (req, res) => {
 
   events.save((err, events) => {
     if (err) {
+      console.log(err)
       res.status(500).send({ message: err });
       return;
     }

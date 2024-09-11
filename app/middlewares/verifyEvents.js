@@ -12,7 +12,7 @@ checkDuplicateEvents = (req, res, next) => {
     }
 
     if (event) {
-      res.status(400).send({ message: "Failed! Event has already been created!" });
+      res.send({ message: "Failed! Event has already been created!" });
       return;
     }
     next();
