@@ -9,3 +9,7 @@ npm install
 ```
 node server.js
 ```
+
+### ToDos
+- [ ] Upgrade mongoose from 6.x to 8.x
+- [ ] Test
