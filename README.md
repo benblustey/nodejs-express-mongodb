@@ -11,5 +11,7 @@ node server.js
 ```
 
 ### ToDos
+- [ ] Signup form
+- [ ] Form Pages
 - [ ] Upgrade mongoose from 6.x to 8.x
 - [ ] Tests
